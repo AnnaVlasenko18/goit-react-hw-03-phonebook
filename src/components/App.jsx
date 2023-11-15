@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid';
 import toast, { Toaster } from 'react-hot-toast';
 import { Wrapper, Container, Title, TitleContact } from './App.styled';
 
+const storageContact = 'add-contacts';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -38,6 +40,24 @@ export class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
+  componentDidMount() {
+    const saveContact = window.localStorage.getItem(storageContact);
+    if (saveContact !== null) {
+      this.setState({
+        contacts: JSON.parse(saveContact),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      window.localStorage.setItem(
+        storageContact,
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
 
   changeFilter = value => {
     this.setState({ filter: value });
