@@ -5,7 +5,7 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
 import toast, { Toaster } from 'react-hot-toast';
-import { Wrapper, Container, Title, TitleContact } from './App.styled';
+import { Wrapper, Container, Title, TitleContact } from './Layout';
 
 const storageContact = 'add-contacts';
 
